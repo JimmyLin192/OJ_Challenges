@@ -17,9 +17,19 @@ using namespace std;
 
 int main (int argn, char** argv) {
     long N; // length of given string;
-    long K; // window size
     // read from stdin 
-    cin >> N >> K;
+    cin >> N;
+    cout << "N: " << N << endl;
+    if (N < 0) return -1;
+    vector<long> T (N, 0);
+    for (long i = 0; i < N; i++) {
+        cin >> T[i];
+        cout << T[i] << endl;
+    }
+    long Q1, Q2;
+    while (cin >> Q1 >> Q2) {
+        cout << Q1 << "-" << Q2 << endl;
+    }
     
 
     // out to std
