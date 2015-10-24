@@ -30,7 +30,6 @@ int main (int argn, char** argv) {
     vector<long> counts(N, 0); // counts of counts
     for (long i = 0; i < N; i ++) {
         cin >> counts[i];
-
     }
     // Dynamic programming to compute if (s, e) is non_dec and non_inc
     vector<vector<bool> > non_dec(K-1, vector<bool>() );
