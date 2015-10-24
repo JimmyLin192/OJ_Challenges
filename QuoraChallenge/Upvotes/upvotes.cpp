@@ -26,16 +26,11 @@ int main (int argn, char** argv) {
     // check for constraints
     if (not (1 <= N and N <= N_MAX)) exit(1);
     if (not (K <= N)) exit(1);
-#ifdef UPVOTE_DEBUG
-    cout << "N: " << N << endl;
-    cout << "K: " << K << endl;
-#endif
+
     vector<long> counts(N, 0); // counts of counts
     for (long i = 0; i < N; i ++) {
         cin >> counts[i];
-#ifdef UPVOTE_DEBUG
-        cout << counts[i] << endl;
-#endif
+
     }
     // Dynamic programming to compute if (s, e) is non_dec and non_inc
     vector<vector<bool> > non_dec(K-1, vector<bool>() );
@@ -60,18 +55,7 @@ int main (int argn, char** argv) {
             }
         }
     }
-#ifdef UPVOTE_DEBUG
-    for (long i = 0; i < K-1; i ++) {
-        for (int j = 0; j < non_dec[i].size(); j++) 
-            cout << non_dec[i][j];
-        cout << endl;
-    }
-    for (long i = 0; i < K-1; i ++) {
-        for (int j = 0; j < non_dec[i].size(); j++) 
-            cout << non_inc[i][j];
-        cout << endl;
-    }
-#endif
+
     // count the number of true
     vector<long> non_dec_count (N-K+1, 0);
     vector<long> non_inc_count (N-K+1, 0);
@@ -95,10 +79,7 @@ int main (int argn, char** argv) {
             non_inc_count[i] += non_inc[k-2][K-k+i]?1:0;
         }
     }
-#ifdef UPVOTE_DEBUG
-    for (int i = 0; i < N-K+1; i ++) 
-        cout << non_dec_count[i] << " against " << non_inc_count[i] << endl;
-#endif
+
     // output to stdout
     for (long i = 0; i < N-K+1; i ++) 
         cout << non_dec_count[i] - non_inc_count[i] << endl;
