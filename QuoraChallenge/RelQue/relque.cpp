@@ -35,39 +35,26 @@ double getER (long id, vector< vector<long> >& related, vector<long>& T, long ex
 
 int main (int argn, char** argv) {
     long N; // length of given string;
-    // read from stdin 
     cin >> N;
-    // cout << "N: " << N << endl;
     if (N < 0) return -1;
     vector<long> T (N, 0); // reading time
     vector< vector<long> > related (N, vector<long>());
-    for (long i = 0; i < N; i++) {
+    for (long i = 0; i < N; i++) 
         cin >> T[i];
-        // cout << T[i] << endl;
-    }
     long Q1, Q2;
     while (cin >> Q1 >> Q2) {
-        // cout << Q1 << "-" << Q2 << endl;
         related[Q1-1].push_back(Q2-1);
         related[Q2-1].push_back(Q1-1);
     }
     // resolve the minimality
-    long ALLTIME = 0;
-    vector<double> ER (N, 0);
-    for (long i = 0; i < N; i++) ALLTIME += T[i];
     double min_ER = DBL_MAX; 
     long min_ER_ID = -1;
     for (long i = 0; i < N; i++) {
-        ER[i] = getER (i, related, T, -1);
-        // cout << "i=" << i << ", ER=" << ER[i] << endl;
         if (ER[i] <= min_ER) {
             min_ER = ER[i];
             min_ER_ID = i;
         }
     }
-    // cout << "res=" << min_ER_ID + 1 << endl;
-
-    // out to std
     cout <<  min_ER_ID + 1 << endl;
     return 0;
     }
